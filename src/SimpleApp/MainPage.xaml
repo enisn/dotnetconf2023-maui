@@ -8,15 +8,8 @@
     <ContentPage.BindingContext>
         <vm:MainViewModel />
     </ContentPage.BindingContext>
-    
-    <CollectionView ItemsSource="{Binding Items}" WidthRequest="{OnIdiom Default=-1, Desktop=400}">
-        <CollectionView.Header>
-            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="4" Margin="8">
-                <Entry Text="{Binding NewItem.Text}" ReturnCommand="{Binding AddCommand}" />
-                <Button Text="Add" Command="{Binding AddCommand}" Grid.Column="1" />
-            </Grid>
-        </CollectionView.Header>
 
+    <CollectionView ItemsSource="{Binding Items}" WidthRequest="{OnIdiom Default=-1, Desktop=400}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Grid ColumnDefinitions="Auto,*, Auto">
@@ -35,6 +28,12 @@
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
+        <CollectionView.Footer>
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="4" Margin="8">
+                <Entry Text="{Binding NewItem.Text}" ReturnCommand="{Binding AddCommand}" />
+                <Button Text="Add" Command="{Binding AddCommand}" Grid.Column="1" />
+            </Grid>
+        </CollectionView.Footer>
     </CollectionView>
 
 </ContentPage>

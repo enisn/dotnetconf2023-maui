@@ -1,41 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<reactive:ReactiveContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             x:TypeArguments="vm:MainViewModel"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:reactive="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+             xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
+             x:DataType="vm:MainViewModel"
              x:Class="ReactiveApp.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <CollectionView ItemsSource="{Binding Items}" BackgroundColor="Red">
+        <CollectionView.Header>
+            <SearchBar Placeholder="Search..." Text="{Binding SearchTerm}"/>
+        </CollectionView.Header>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="vm:TodoItem">
+                <Grid ColumnDefinitions="Auto,*, Auto" Margin="10,0">
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                    <CheckBox IsChecked="{Binding IsCompleted}" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+                    <Label Grid.Column="1"
+                       Text="{Binding Text}"
+                       VerticalOptions="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}" Value="True">
+                                <Setter Property="TextDecorations" Value="Strikethrough" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                    <Button Grid.Column="2"
+                        Text="X"
+                        Command="{Binding RemoveCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}"
+                        CommandParameter="{Binding}"
+                        BackgroundColor="Transparent"
+                        TextColor="Red"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        
+        <CollectionView.Footer>
+            <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="4" Margin="10">
+                <CheckBox IsChecked="{Binding NewItem.IsCompleted}"/>
+                <Entry Grid.Column="1" Text="{Binding NewItem.Text}" ReturnCommand="{Binding AddCommand}" />
+                <Button Grid.Column="2" Text="Add" Command="{Binding AddCommand}" />
+            </Grid>
+        </CollectionView.Footer>
+    </CollectionView>
 
-        </VerticalStackLayout>
-    </ScrollView>
-
-</ContentPage>
+</reactive:ReactiveContentPage>

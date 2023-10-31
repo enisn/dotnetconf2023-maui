@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using ReactiveApp.ViewModels;
+using ReactiveUI;
+using System.Reactive;
 
 namespace ReactiveApp;
 public static class MauiProgram
@@ -14,8 +17,12 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+        builder.Services
+            .AddTransient<MainPage>()
+            .AddTransient<MainViewModel>();
+
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
         return builder.Build();
