@@ -77,7 +77,7 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
     }
 }
 
-public class TodoItem : BindableObject
+public class TodoItem : ReactiveObject
 {
     public TodoItem(string text, bool isCompleted = false)
     {
@@ -89,27 +89,9 @@ public class TodoItem : BindableObject
 
     public Guid Id { get; }
 
-    private string text;
-    public string Text
-    {
-        get => text;
-        set
-        {
-            text = value;
-            OnPropertyChanged();
-        }
-    }
+    [Reactive] public string Text { get; set; }
 
-    private bool isCompleted;
-    public bool IsCompleted
-    {
-        get => isCompleted;
-        set
-        {
-            isCompleted = value;
-            OnPropertyChanged();
-        }
-    }
+    [Reactive] public bool IsCompleted { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; }
 }
