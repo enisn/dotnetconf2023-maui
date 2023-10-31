@@ -7,7 +7,7 @@
              x:DataType="vm:MainViewModel"
              x:Class="ReactiveApp.MainPage">
 
-    <CollectionView ItemsSource="{Binding Items}" BackgroundColor="Red">
+    <CollectionView ItemsSource="{Binding Items}" WidthRequest="{OnIdiom Default=-1, Desktop=400}">
         <CollectionView.Header>
             <SearchBar Placeholder="Search..." Text="{Binding SearchTerm}"/>
         </CollectionView.Header>
