@@ -1,50 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <reactive:ReactiveContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             x:TypeArguments="vm:MainViewModel"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:reactive="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
-             xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
-             x:DataType="vm:MainViewModel"
-             x:Class="ReactiveApp.MainPage">
+    x:TypeArguments="vm:MainViewModel"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:reactive="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+    xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
+    x:DataType="vm:MainViewModel"
+    x:Class="ReactiveApp.MainPage">
 
-    <CollectionView ItemsSource="{Binding Items}" WidthRequest="{OnIdiom Default=-1, Desktop=400}">
-        <CollectionView.Header>
-            <SearchBar Placeholder="Search..." Text="{Binding SearchTerm}"/>
-        </CollectionView.Header>
+    <Grid RowDefinitions="Auto, *">
+        <SearchBar Placeholder="Search..." Text="{Binding SearchTerm}" />
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="vm:TodoItem">
-                <Grid ColumnDefinitions="Auto,*, Auto" Margin="10,0">
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Items}">
 
-                    <CheckBox IsChecked="{Binding IsCompleted}" />
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:TodoItem">
+                    <Grid ColumnDefinitions="Auto,*, Auto" Margin="10,0">
 
-                    <Label Grid.Column="1"
-                       Text="{Binding Text}"
-                       VerticalOptions="Center">
-                        <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}" Value="True">
-                                <Setter Property="TextDecorations" Value="Strikethrough" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
+                        <CheckBox IsChecked="{Binding IsCompleted}" />
 
-                    <Button Grid.Column="2"
-                        Text="X"
-                        Command="{Binding RemoveCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}"
-                        CommandParameter="{Binding}"
-                        BackgroundColor="Transparent"
-                        TextColor="Red"/>
+                        <Label Grid.Column="1"
+                            Text="{Binding Text}"
+                            VerticalOptions="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}"
+                                    Value="True">
+                                    <Setter Property="TextDecorations" Value="Strikethrough" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+
+                        <Button Grid.Column="2"
+                            Text="X"
+                            Command="{Binding RemoveCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}"
+                            CommandParameter="{Binding}"
+                            BackgroundColor="Transparent"
+                            TextColor="Red" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.Footer>
+                <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="4" Padding="10">
+                    <CheckBox IsChecked="{Binding NewItem.IsCompleted}" />
+                    <Entry Grid.Column="1" Text="{Binding NewItem.Text}"
+                        ReturnCommand="{Binding AddCommand}" />
+                    <Button Grid.Column="2" Text="Add" Command="{Binding AddCommand}" />
                 </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-        
-        <CollectionView.Footer>
-            <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="4" Margin="10">
-                <CheckBox IsChecked="{Binding NewItem.IsCompleted}"/>
-                <Entry Grid.Column="1" Text="{Binding NewItem.Text}" ReturnCommand="{Binding AddCommand}" />
-                <Button Grid.Column="2" Text="Add" Command="{Binding AddCommand}" />
-            </Grid>
-        </CollectionView.Footer>
-    </CollectionView>
+            </CollectionView.Footer>
+        </CollectionView>
+    </Grid>
 
 </reactive:ReactiveContentPage>
