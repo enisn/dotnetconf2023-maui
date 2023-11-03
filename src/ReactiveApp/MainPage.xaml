@@ -8,7 +8,7 @@
     Title="Todo List"
     x:Class="ReactiveApp.MainPage">
 
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *, Auto">
         <Entry Placeholder="Search..." Text="{Binding SearchTerm}" />
 
         <CollectionView Grid.Row="1" ItemsSource="{Binding Items}">
@@ -43,16 +43,14 @@
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
-            <CollectionView.Footer>
-                <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="4" Padding="10">
-                    <CheckBox IsChecked="{Binding NewItem.IsCompleted}" />
-                    <Entry Grid.Column="1" Text="{Binding NewItem.Text}"
-                        ReturnCommand="{Binding AddCommand}" />
-                    <Button Grid.Column="2" Text="Add" Command="{Binding AddCommand}" />
-                </Grid>
-            </CollectionView.Footer>
         </CollectionView>
+
+    <Grid Grid.Row="2" ColumnDefinitions="Auto, *, Auto" ColumnSpacing="4" Padding="10">
+        <CheckBox IsChecked="{Binding NewItem.IsCompleted}" />
+        <Entry Grid.Column="1" Text="{Binding NewItem.Text}"
+            ReturnCommand="{Binding AddCommand}" />
+        <Button Grid.Column="2" Text="Add" Command="{Binding AddCommand}" />
     </Grid>
+</Grid>
 
 </reactive:ReactiveContentPage>
