@@ -27,6 +27,10 @@
                                     Value="True">
                                     <Setter Property="TextDecorations" Value="Strikethrough" />
                                 </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}"
+                                    Value="False">
+                                    <Setter Property="TextDecorations" Value="None" />
+                                </DataTrigger>
                             </Label.Triggers>
                         </Label>
 
