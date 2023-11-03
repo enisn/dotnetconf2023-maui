@@ -5,10 +5,11 @@
     xmlns:reactive="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
     xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
     x:DataType="vm:MainViewModel"
+    Title="Todo List"
     x:Class="ReactiveApp.MainPage">
 
     <Grid RowDefinitions="Auto, *">
-        <SearchBar Placeholder="Search..." Text="{Binding SearchTerm}" />
+        <Entry Placeholder="Search..." Text="{Binding SearchTerm}" />
 
         <CollectionView Grid.Row="1" ItemsSource="{Binding Items}">
 
