@@ -19,7 +19,9 @@ public static class MauiProgram
 
         builder.Services
             .AddTransient<MainPage>()
-            .AddTransient<MainViewModel>();
+            .AddTransient<MainViewModel>()
+            //.AddSingleton<TodoItemsService>()
+            ;
 
 #if DEBUG
         builder.Logging.AddDebug();
