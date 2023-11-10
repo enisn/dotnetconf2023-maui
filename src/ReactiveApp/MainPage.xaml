@@ -5,10 +5,11 @@
     xmlns:reactive="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
     xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
     x:DataType="vm:MainViewModel"
+    Title="Todo List"
     x:Class="ReactiveApp.MainPage">
 
     <Grid RowDefinitions="Auto, *, Auto">
-        <SearchBar Placeholder="Search..." Text="{Binding SearchTerm}" />
+        <Entry Placeholder="Search..." Text="{Binding SearchTerm}" />
 
         <CollectionView Grid.Row="1" ItemsSource="{Binding Items}">
 
@@ -26,6 +27,10 @@
                                     Value="True">
                                     <Setter Property="TextDecorations" Value="Strikethrough" />
                                 </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}"
+                                    Value="False">
+                                    <Setter Property="TextDecorations" Value="None" />
+                                </DataTrigger>
                             </Label.Triggers>
                         </Label>
 
@@ -40,12 +45,12 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid Grid.Row="2" ColumnDefinitions="Auto, *, Auto" ColumnSpacing="4" Padding="10">
-            <CheckBox IsChecked="{Binding NewItem.IsCompleted}" />
-            <Entry Grid.Column="1" Text="{Binding NewItem.Text}"
-              ReturnCommand="{Binding AddCommand}" />
-            <Button Grid.Column="2" Text="Add" Command="{Binding AddCommand}" />
-        </Grid>
+    <Grid Grid.Row="2" ColumnDefinitions="Auto, *, Auto" ColumnSpacing="4" Padding="10">
+        <CheckBox IsChecked="{Binding NewItem.IsCompleted}" />
+        <Entry Grid.Column="1" Text="{Binding NewItem.Text}"
+            ReturnCommand="{Binding AddCommand}" />
+        <Button Grid.Column="2" Text="Add" Command="{Binding AddCommand}" />
     </Grid>
+</Grid>
 
 </reactive:ReactiveContentPage>

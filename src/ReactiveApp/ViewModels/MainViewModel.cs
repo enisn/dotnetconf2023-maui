@@ -11,7 +11,7 @@ namespace ReactiveApp.ViewModels;
 
 public class MainViewModel : ReactiveObject, IActivatableViewModel
 {
-    [Reactive] public TodoItem NewItem { get; set; } = new(string.Empty);
+    [Reactive] public TodoItem NewItem { get; set; } = new();
 
     private ReadOnlyObservableCollection<TodoItem> items;
     public ReadOnlyObservableCollection<TodoItem> Items => items;
@@ -31,7 +31,7 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
         AddCommand = ReactiveCommand.Create(() =>
         {
             ItemsSourceList.Add(NewItem);
-            NewItem = new TodoItem(string.Empty);
+            NewItem = new TodoItem();
         });
 
         RemoveCommand = ReactiveCommand.Create<TodoItem>(item =>
@@ -75,17 +75,15 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
 
 public class TodoItem : ReactiveObject
 {
-    public TodoItem(string text, bool isCompleted = false)
+    public TodoItem()
     {
         Id = Guid.NewGuid();
-        Text = text;
-        IsCompleted = isCompleted;
         CreatedAt = DateTime.Now;
     }
 
     public Guid Id { get; }
 
-    [Reactive] public string Text { get; set; }
+    [Reactive] public string Text { get; set; } = string.Empty;
 
     [Reactive] public bool IsCompleted { get; set; }
 

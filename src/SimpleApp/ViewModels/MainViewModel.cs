@@ -6,7 +6,7 @@ using System.Windows.Input;
 namespace SimpleApp.ViewModels;
 public class MainViewModel : INotifyPropertyChanged
 {
-    private TodoItem newItem = new(string.Empty);
+    private TodoItem newItem = new();
     public TodoItem NewItem
     {
         get => newItem;
@@ -28,7 +28,7 @@ public class MainViewModel : INotifyPropertyChanged
         AddCommand = new Command(() =>
         {
             Items.Add(NewItem);
-            NewItem = new TodoItem(string.Empty);
+            NewItem = new TodoItem();
         });
 
         RemoveCommand = new Command<TodoItem>(item =>
@@ -44,17 +44,15 @@ public class MainViewModel : INotifyPropertyChanged
 
 public class TodoItem : BindableObject
 {
-    public TodoItem(string text, bool isCompleted = false)
+    public TodoItem()
     {
         Id = Guid.NewGuid();
-        Text = text;
-        IsCompleted = isCompleted;
         CreatedAt = DateTime.Now;
     }
 
     public Guid Id { get; }
 
-    private string text;
+    private string text = string.Empty;
     public string Text
     {
         get => text; 

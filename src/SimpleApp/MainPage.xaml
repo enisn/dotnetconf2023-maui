@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SimpleApp.ViewModels"
              x:Class="SimpleApp.MainPage"
+             Title="Todo List"
              Padding="20">
 
     <ContentPage.BindingContext>
         <vm:MainViewModel />
     </ContentPage.BindingContext>
 
-    <CollectionView ItemsSource="{Binding Items}" WidthRequest="{OnIdiom Default=-1, Desktop=400}">
+    <CollectionView ItemsSource="{Binding Items}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Grid ColumnDefinitions="Auto,*, Auto">
