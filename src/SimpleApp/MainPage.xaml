@@ -9,32 +9,35 @@
     <ContentPage.BindingContext>
         <vm:MainViewModel />
     </ContentPage.BindingContext>
+    <Grid RowDefinitions="*, Auto">
 
-    <CollectionView ItemsSource="{Binding Items}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid ColumnDefinitions="Auto,*, Auto">
-                    
-                    <CheckBox IsChecked="{Binding IsCompleted}" />
+        <CollectionView ItemsSource="{Binding Items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,*, Auto">
 
-                    <Label Grid.Column="1"
+                        <CheckBox IsChecked="{Binding IsCompleted}" />
+
+                        <Label Grid.Column="1"
                         Text="{Binding Text}"
                            VerticalOptions="Center"/>
 
-                    <Button 
+                        <Button 
                         Grid.Column="2"
                         Text="X"
                         Command="{Binding RemoveCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}"
                         CommandParameter="{Binding}"/>
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-        <CollectionView.Footer>
-            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="4" Margin="8">
-                <Entry Text="{Binding NewItem.Text}" ReturnCommand="{Binding AddCommand}" />
-                <Button Text="Add" Command="{Binding AddCommand}" Grid.Column="1" />
-            </Grid>
-        </CollectionView.Footer>
-    </CollectionView>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Grid.Row="1" ColumnDefinitions="Auto, *, Auto" ColumnSpacing="4" Padding="10">
+            <CheckBox IsChecked="{Binding NewItem.IsCompleted}" />
+            <Entry Grid.Column="1" Text="{Binding NewItem.Text}"
+    ReturnCommand="{Binding AddCommand}" />
+            <Button Grid.Column="2" Text="Add" Command="{Binding AddCommand}" />
+        </Grid>
+    </Grid>
 
 </ContentPage>
