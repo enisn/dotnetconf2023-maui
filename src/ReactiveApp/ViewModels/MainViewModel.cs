@@ -2,14 +2,10 @@
 using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
 namespace ReactiveApp.ViewModels;
 
