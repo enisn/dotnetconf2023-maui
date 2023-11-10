@@ -6,7 +6,8 @@
     xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
     x:DataType="vm:MainViewModel"
     Title="Todo List"
-    x:Class="ReactiveApp.MainPage">
+    x:Class="ReactiveApp.MainPage"
+    Padding="10">
 
     <Grid RowDefinitions="Auto, *, Auto">
         <Entry Placeholder="Search..." Text="{Binding SearchTerm}" />
