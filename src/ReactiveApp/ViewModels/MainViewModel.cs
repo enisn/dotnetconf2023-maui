@@ -43,6 +43,7 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
         {
             var observableFilter = this
                 .WhenAnyValue(viewModel => viewModel.SearchTerm)
+                .Throttle(TimeSpan.FromMilliseconds(250))
                 .Select(MakeFilter);
 
             var observableSort = ItemsSourceList.Connect()
@@ -68,7 +69,8 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
 
     private SortExpressionComparer<TodoItem> MakeSort(bool isCompleted)
     {
-        return SortExpressionComparer<TodoItem>.Ascending(t => t.IsCompleted)
+        return SortExpressionComparer<TodoItem>
+            .Ascending(t => t.IsCompleted)
             .ThenByAscending(x => x.CreatedAt);
     }
 }

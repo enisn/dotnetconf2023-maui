@@ -9,6 +9,7 @@
     <ContentPage.BindingContext>
         <vm:MainViewModel />
     </ContentPage.BindingContext>
+
     <Grid RowDefinitions="*, Auto">
 
         <CollectionView ItemsSource="{Binding Items}">
