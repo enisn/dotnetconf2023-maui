@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ReactiveApp.Sources;
 using ReactiveApp.ViewModels;
 using ReactiveUI;
 using System.Reactive;
@@ -18,9 +19,13 @@ public static class MauiProgram
             });
 
         builder.Services
+            .AddTransient<AppShell>()
+            .AddTransient<AppShellViewModel>()
             .AddTransient<MainPage>()
             .AddTransient<MainViewModel>()
-            //.AddSingleton<TodoItemsService>()
+            .AddTransient<ProfilePage>()
+            .AddTransient<ProfilePageViewModel>()
+            .AddSingleton<ProfileDataSource>()
             ;
 
 #if DEBUG

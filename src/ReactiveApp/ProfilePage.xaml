@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<reactive:ReactiveContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    x:TypeArguments="vm:ProfilePageViewModel"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:reactive="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+    xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
+    x:Class="ReactiveApp.ProfilePage"
+    x:DataType="vm:ProfilePageViewModel"
+    Title="ProfilePage"
+    Padding="32">
+    <VerticalStackLayout>
+        <Label Text="UserName"/>
+
+        <Entry Text="{Binding UserName}" />
+
+    </VerticalStackLayout>
+</reactive:ReactiveContentPage>
