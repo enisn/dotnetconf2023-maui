@@ -20,7 +20,7 @@
                         <CheckBox IsChecked="{Binding IsCompleted}" />
 
                         <Label Grid.Column="1"
-                        Text="{Binding Text}"
+                            Text="{Binding Text}"
                            VerticalOptions="Center"/>
 
                         <Button 

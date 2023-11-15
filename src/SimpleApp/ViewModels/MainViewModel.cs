@@ -46,11 +46,8 @@ public class TodoItem : BindableObject
 {
     public TodoItem()
     {
-        Id = Guid.NewGuid();
         CreatedAt = DateTime.Now;
     }
-
-    public Guid Id { get; }
 
     private string text = string.Empty;
     public string Text

@@ -16,6 +16,8 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
     private ReadOnlyObservableCollection<TodoItem> items;
     public ReadOnlyObservableCollection<TodoItem> Items => items;
 
+    // SourceCache<> has performance benefits over SourceList<>. 
+    // Use it when an identifier exist for each item.
     protected SourceList<TodoItem> ItemsSourceList { get; } = new();
 
     [Reactive] public string SearchTerm { get; set; }
@@ -79,11 +81,8 @@ public class TodoItem : ReactiveObject
 {
     public TodoItem()
     {
-        Id = Guid.NewGuid();
         CreatedAt = DateTime.Now;
     }
-
-    public Guid Id { get; }
 
     [Reactive] public string Text { get; set; } = string.Empty;
 
