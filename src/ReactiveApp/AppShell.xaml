@@ -4,12 +4,30 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ReactiveApp"
-    Shell.FlyoutBehavior="Disabled"
-    Title="ReactiveApp">
+    xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutItemIsVisible="True"
+    Shell.FlyoutWidth="320"
+    Title="ReactiveApp"
+    x:DataType="vm:AppShellViewModel">
+
+    <Shell.FlyoutHeader>
+        <Label 
+            Text="{Binding HeaderMessage}"
+            Padding="20,50"
+            FontAttributes="Bold"
+            BackgroundColor="{StaticResource Primary}"
+            TextColor="{StaticResource White}"/>
+    </Shell.FlyoutHeader>
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    
+    <ShellContent
+        Title="Profile"
+        ContentTemplate="{DataTemplate local:ProfilePage}"
+        Route="Profile" />
 
 </Shell>
