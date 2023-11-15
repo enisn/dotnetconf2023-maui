@@ -12,7 +12,7 @@
     <VerticalStackLayout>
         <Label Text="UserName"/>
 
-        <Entry Text="{Binding UserName}" />
+        <Entry Text="{Binding ProfileDataSource.UserName}" />
 
     </VerticalStackLayout>
 </reactive:ReactiveContentPage>

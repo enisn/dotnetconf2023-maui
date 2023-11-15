@@ -8,19 +8,10 @@ public class ProfilePageViewModel : ReactiveObject, IActivatableViewModel
 {
     public ViewModelActivator Activator { get; } = new();
 
-    [Reactive] public string UserName { get; set; }
+    public ProfileDataSource ProfileDataSource { get; }
 
     public ProfilePageViewModel(ProfileDataSource profileDataSource)
     {
-        this.WhenActivated(disposables =>
-        {
-            profileDataSource.WhenAnyValue(s => s.UserName)
-                .BindTo(this, vm => vm.UserName)
-                .DisposeWith(disposables);
-
-            this.WhenAnyValue(viewModel => viewModel.UserName)
-                .BindTo(profileDataSource, source => source.UserName)
-                .DisposeWith(disposables);
-        });
+        ProfileDataSource = profileDataSource;
     }
 }

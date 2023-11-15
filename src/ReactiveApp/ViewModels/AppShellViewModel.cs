@@ -10,7 +10,7 @@ public class AppShellViewModel : ReactiveObject
     {
         profileDataSource
             .WhenAnyValue(source => source.UserName)
-            .Select(username => $"Welcome, {username}!")
+            .Select(username => $"Welcome, {username}!") // TODO: Don't use magic string
             .BindTo(this, vm => vm.HeaderMessage);
     }
 
