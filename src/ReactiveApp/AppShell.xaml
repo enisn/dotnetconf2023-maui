@@ -7,7 +7,6 @@
     xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
     Shell.FlyoutBehavior="Flyout"
     Shell.FlyoutItemIsVisible="True"
-    Shell.FlyoutWidth="320"
     Title="ReactiveApp"
     x:DataType="vm:AppShellViewModel">
 
