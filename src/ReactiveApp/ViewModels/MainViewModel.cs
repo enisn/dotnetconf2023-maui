@@ -32,6 +32,11 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
     {
         AddCommand = ReactiveCommand.Create(() =>
         {
+            if (ItemsSourceList.Items.Any(x => x.Text == NewItem.Text))
+            {
+                throw new Exception("Item already exists");
+            }
+
             ItemsSourceList.Add(NewItem);
             NewItem = new TodoItem();
         });

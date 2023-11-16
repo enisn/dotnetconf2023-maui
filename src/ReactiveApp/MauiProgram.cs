@@ -18,6 +18,13 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+        RxApp.DefaultExceptionHandler = new AnonymousObserver<Exception>(ex =>
+        {
+            App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+
+            // Track the exception here... (e.g. AppCenter, Sentry, etc.)
+        });
+
         builder.Services
             .AddTransient<AppShell>()
             .AddTransient<AppShellViewModel>()
